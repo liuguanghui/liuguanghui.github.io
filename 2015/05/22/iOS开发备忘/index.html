@@ -100,7 +100,11 @@
 </ul>
 <a id="more"></a>
 <ul>
-<li><strong>创建一个全局唯一的KEY</strong><br>创建一个静态的指针，取这个指针的内存地址作为KEY。创建简单而且代码看起来清晰。<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> *KEY = &amp;KEY;</span><br><span class="line"><span class="comment">//KEY可以自定义</span></span><br></pre></td></tr></table></figure></li>
+<li><p><strong>创建一个全局唯一的KEY</strong><br>创建一个静态的指针，取这个指针的内存地址作为KEY。创建简单而且代码看起来清晰。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> *KEY = &amp;KEY;</span><br><span class="line"><span class="comment">//KEY可以自定义</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使用KVO监听UIViewController的属性</strong><br>如果没有注册监听的情况下，执行移除监听，会导致Crash。所以一般注册监听放到<code>init</code>方法中执行。移除监听放到<code>dealloc</code>方法中执行。开发中遇到过这样的坑。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注册监听</span></span><br><span class="line">[self <span class="string">addObserver:</span>&lt;#(NSObject *)#&gt; <span class="string">forKeyPath:</span>&lt;#(NSString *)#&gt; <span class="string">options:</span>&lt;#(NSKeyValueObservingOptions)#&gt; <span class="string">context:</span>&lt;#(<span class="typename">void</span> *)#&gt;];</span><br><span class="line"><span class="comment">//移除监听</span></span><br><span class="line">[self <span class="string">removeObserver:</span>&lt;#(NSObject *)#&gt; <span class="string">forKeyPath:</span>&lt;#(NSString *)#&gt; <span class="string">context:</span>&lt;#(<span class="typename">void</span> *)#&gt;];</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
