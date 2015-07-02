@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>iOS开发备忘 | Small</title>
+  <title>iOS开发备忘 | 行云</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="打印代码执行时间
 123CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();//CodeNSLog(@&quot;Code Run Interval : %f Sec&quot;,CFAbsoluteTimeGetCurrent()  - startTime);
@@ -12,7 +12,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发备忘">
 <meta property="og:url" content="http://liuguanghui.cn/2015/05/22/iOS开发备忘/index.html">
-<meta property="og:site_name" content="Small">
+<meta property="og:site_name" content="行云">
 <meta property="og:description" content="打印代码执行时间
 123CFAbsoluteTime startTime = CFAbsoluteTimeGetCurrent();//CodeNSLog(@&quot;Code Run Interval : %f Sec&quot;,CFAbsoluteTimeGetCurrent()  - startTime);
 
@@ -40,7 +40,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Small</a>
+        <a href="/" id="logo">行云</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -104,7 +104,13 @@
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> *KEY = &amp;KEY;</span><br><span class="line"><span class="comment">//KEY可以自定义</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>使用KVO监听UIViewController的属性</strong><br>如果没有注册监听的情况下，执行移除监听，会导致Crash。所以一般注册监听放到<code>init</code>方法中执行。移除监听放到<code>dealloc</code>方法中执行。开发中遇到过这样的坑。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注册监听</span></span><br><span class="line">[self <span class="string">addObserver:</span>&lt;#(NSObject *)#&gt; <span class="string">forKeyPath:</span>&lt;#(NSString *)#&gt; <span class="string">options:</span>&lt;#(NSKeyValueObservingOptions)#&gt; <span class="string">context:</span>&lt;#(<span class="typename">void</span> *)#&gt;];</span><br><span class="line"><span class="comment">//移除监听</span></span><br><span class="line">[self <span class="string">removeObserver:</span>&lt;#(NSObject *)#&gt; <span class="string">forKeyPath:</span>&lt;#(NSString *)#&gt; <span class="string">context:</span>&lt;#(<span class="typename">void</span> *)#&gt;];</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注册监听</span></span><br><span class="line">[self <span class="string">addObserver:</span>&lt;#(NSObject *)#&gt; <span class="string">forKeyPath:</span>&lt;#(NSString *)#&gt; <span class="string">options:</span>&lt;#(NSKeyValueObservingOptions)#&gt; <span class="string">context:</span>&lt;#(<span class="typename">void</span> *)#&gt;];</span><br><span class="line"><span class="comment">//移除监听</span></span><br><span class="line">[self <span class="string">removeObserver:</span>&lt;#(NSObject *)#&gt; <span class="string">forKeyPath:</span>&lt;#(NSString *)#&gt; <span class="string">context:</span>&lt;#(<span class="typename">void</span> *)#&gt;];</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>设置UINavigationController的返回手势</strong><br>iOS7以后，UINavigationController提供了interactivePopGestureRecognizer手势，从屏幕左边缘向右滑动，可以返回到上一个ViewController。</p>
+<p>  用下面的代码可以控制ViewController中这个手势的开启与关闭</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span><span class="variable">.navigationController</span><span class="variable">.interactivePopGestureRecognizer</span><span class="variable">.enabled</span> = <span class="literal">YES</span>;</span><br></pre></td></tr></table></figure>
+<p>  但是在使用的过程中发现：自定义返回按钮的时候就失效了😭。解决办法如下。</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIBarButtonItem</span> *barItem = [[<span class="built_in">UIBarButtonItem</span> alloc] initWithCustomView:backButton];</span><br><span class="line"><span class="comment">//self.navigationItem.leftBarButtonItem = barItem;//不要使用这个方式</span></span><br><span class="line"><span class="keyword">self</span><span class="variable">.navigationItem</span><span class="variable">.backBarButtonItem</span> = barItem;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -141,7 +147,7 @@
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">
-    var duoshuoQuery = {short_name:'Small'};
+    var duoshuoQuery = {short_name:'行云'};
       (function() {
         var ds = document.createElement('script');
         ds.type = 'text/javascript';ds.async = true;
@@ -199,7 +205,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 Small<br>
+      &copy; 2015 行云<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
